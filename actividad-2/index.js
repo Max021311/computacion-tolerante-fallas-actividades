@@ -19,6 +19,10 @@ async function fetchPokemon(pokemon) {
 
 async function main () {
   try {
+    const version = process.version
+    if (version < 'v18.0.0') {
+      throw new Error('Node version greater or equal than v18.0.0 it\'s required')
+    }
     const pokemonData = await fetchPokemon(process.argv[2])
     console.log(`Name: ${pokemonData.name}`)
     console.log(`Types: ${pokemonData.types.map(v => v.type.name).join(', ')}`)

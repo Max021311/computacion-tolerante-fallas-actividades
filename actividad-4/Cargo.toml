@@ -1,0 +1,18 @@
+[[bin]]
+name = "main"
+path = "src/main.rs"
+
+[[bin]]
+name = "daemon"
+path = "src/daemon.rs"
+
+[package]
+name = "actividad-4"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+daemonize = "0.5.0"
+tokio = { version = "1", features = ["full"] }

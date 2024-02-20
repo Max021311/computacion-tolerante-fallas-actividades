@@ -13,3 +13,14 @@
 ```bash
 kill $(cat /tmp/daemon.pid)
 ```
+
+
+## Examples
+
+![Alt text](assets/concurrency.png "a title")
+
+![Alt text](assets/threads.png "a title")
+
+![Alt text](assets/subprocess.png "a title")
+
+![Alt text](assets/daemon.png "a title")

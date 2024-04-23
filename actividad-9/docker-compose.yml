@@ -1,0 +1,20 @@
+version: '3'
+services:
+  app1:
+    build:
+      dockerfile: ./server.dockerfile
+    ports:
+      - "3001:3000"
+  app2:
+    build:
+      dockerfile: ./server.dockerfile
+    ports:
+      - "3002:3000"
+  nginx:
+    build:
+      dockerfile: ./nginx.dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - app1
+      - app2

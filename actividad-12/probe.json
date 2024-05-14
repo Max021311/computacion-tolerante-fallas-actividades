@@ -1,0 +1,43 @@
+{
+  "title": "Prueba de disponibilidad",
+  "description": "Se comprueba si el servicio sigue disponible tras prder un pod.",
+  "tags": ["kubernetes"],
+  "steady-state-hypothesis": {
+    "title": "Veriricar que el servicio permanezca saludable.",
+    "probes": [
+      {
+        "name": "service-should-be-healthy",
+        "type": "probe",
+        "tolerance": true,
+        "provider": {
+          "type": "python",
+          "module": "chaosk8s.deployment.probes",
+          "func": "deployment_available_and_healthy",
+          "arguments": {
+            "name": "nodejs-app",
+            "ns": "default"
+          }
+        }
+      }
+    ]
+  },
+  "method": [
+    {
+      "type": "action",
+      "name": "terminate-node-pod",
+      "provider": {
+        "type": "python",
+        "module": "chaosk8s.pod.actions",
+        "func": "terminate_pods",
+        "arguments": {
+          "label_selector": "app=nodejs-app",
+          "rand": true,
+          "ns": "default"
+        }
+      },
+      "pauses": {
+        "after": 5
+      }
+    }
+  ]
+}
